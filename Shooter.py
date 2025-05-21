@@ -169,44 +169,41 @@ def transition(roundn):
     pygame.time.wait(2000)
 
 def fin():
-    global score, ducksmort, duckspawn
-    finjeu = True
+    global score, ducksmort, duckspawn, check4
     appreciation = ""
     if score >= 5000:
         appreciation = "INCROYABLE !"
     elif score >= 2500:
-        appreciation = "Très bien joué !"
+        appreciation = "Tres bien joue !"
     elif score >= 500:
         appreciation = "Pas mal du tout !"
     else:
         appreciation = "Tu peux mieux faire !"
-    while finjeu == True:
-        fenetre.fill((20, 20, 20))
-        pygame.draw.rect(fenetre, (30,30,150) , bord0, 8)
-        surfacefin = daydream50.render("FIN DE PARTIE", True, (255, 255, 255))
-        fenetre.blit(surfacefin, (240, 150))
-        surfacescore = daydream50.render("Score : "+str(score), True, (255, 255, 0))
-        fenetre.blit(surfacescore, (290, 220))
-        surfaceapp = daydream30.render(appreciation, True, (0, 200, 0))
-        fenetre.blit(surfaceapp, (200, 300))
-        pygame.draw.rect(fenetre, (30, 30, 150), rectquitter, 8)
-        surfacequit = daydream50.render("QUITTER", True, (255, 255, 255))
-        fenetre.blit(surfacequit, (rectquitter[0] + 35, rectquitter[1] + 10))
-        surfaceratio = daydream30.render(str(ducksmort)+ "/" + str(totducks) + "canards abattus", True, (255, 255, 255))
-        fenetre.blit(surfaceratio, (250, 260))
-        pygame.mixer.music.load("win.mp3")
-        pygame.mixer.music.play()
-        pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-               continuer = False
-        if pygame.mouse.get_pressed()[0] == False:
-           check4 = False
-        if pygame.mouse.get_pressed()[0] == True and check4 == False :
-           check4 = True
-           if rectquitter.collidepoint(event.pos):
-              finjeu = False
-              continuer = False
+    fenetre.fill((20, 20, 20))
+    pygame.draw.rect(fenetre, (30,30,150) , bord0, 8)
+    surfacefin = daydream50.render("FIN DE PARTIE", True, (30, 30, 150))
+    fenetre.blit(surfacefin, (120, 20))
+    surfacescore = daydream50.render("Score : "+str(score), True, (255, 255, 0))
+    fenetre.blit(surfacescore, (20, 220))
+    surfaceapp = daydream27.render(appreciation, True, (0, 200, 0))
+    fenetre.blit(surfaceapp, (20, 330))
+    pygame.draw.rect(fenetre, (30, 30, 150), rectquitter, 8)
+    surfacequit = daydream50.render("QUITTER", True, (255, 255, 255))
+    fenetre.blit(surfacequit, (rectquitter[0] + 10, rectquitter[1] + 10))
+    surfaceratio = daydream27.render(str(ducksmort)+ "/" + str(totducks) + " canards abattus", True, (255, 255, 255))
+    fenetre.blit(surfaceratio, (20, 290))
+    pygame.mixer.music.load("win.mp3")
+    pygame.mixer.music.play()
+    pygame.display.flip()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            continuer = False
+    if pygame.mouse.get_pressed()[0] == False:
+        check4 = False
+    if pygame.mouse.get_pressed()[0] == True and check4 == False :
+        check4 = True
+        if rectquitter.collidepoint(event.pos):
+           continuer = False
               
 def controles():
     global positionlunette, check, balles, score, rounds, check1, iconligne2, iconligne1, ducksmort
